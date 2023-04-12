@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwindcss/plugin")
+
 module.exports = {
   darkMode: ["class", ".figma-dark"],
   content: ["./src/**/*.{html,js,svelte,ts}"],
@@ -21,5 +24,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant("active", ".active&")
+      addVariant("selection", "&::selection")
+    }),
+  ],
 }
